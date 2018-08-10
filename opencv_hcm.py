@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import time
 
-def get_chess(image,minR=230,maxR=250,hough_pram2=15):
+def get_chess(image,minR=230,maxR=250,hough_pram2=15,getImg=True):
     image=cv2.GaussianBlur(image,(3,3),7)
     gray=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
     gray = cv2.Laplacian(gray, cv2.CV_8U, gray, 3)
@@ -23,8 +23,10 @@ def get_chess(image,minR=230,maxR=250,hough_pram2=15):
         r=int(i[2])
         cv2.circle(cimg,(i[0],i[1]),i[2],(0,0,255),2)
         cv2.circle(cimg, (i[0], i[1]), 2, (255,0,0), 2)
-    return cimg
-    #return (x,y,r)
+    if getImg==True:
+        return cimg
+    else:
+        return (x,y,r)
 
 class Line:
     def __init__(self,x1,y1,x2,y2):
@@ -63,6 +65,8 @@ class Cross:
 
     def get_cross_point(self):
         sumy=0
+        if len(self.rows)==0 or len(self.cols)==0:
+            raise Exception
         for i in self.rows:
             liney=(i.start[1]+i.end[1])/2
             sumy+=liney
@@ -92,7 +96,7 @@ class Cross:
                 return False
 
 
-def get_cross(image):
+def get_cross(image,getImg=True):
     image=cv2.GaussianBlur(image,(3,3),7)
     height=int(image.shape[0])
     image=image[int(height/2):height-1,:]
@@ -129,6 +133,14 @@ def get_cross(image):
         print("err")
         return None
     #cv2.drawContours(cimg, contours, -1, (0, 255, 0), 2)
+    try:
+        (x,y)=cross.get_cross_point()
+        cv2.circle(cimg,(x,y),2,(255,255,0),2)
+    except:
+        return None
+    if getImg==True:
+        return cimg
+    else:
+        return (x,y)
 
-    return cross.get_cross_point()
 

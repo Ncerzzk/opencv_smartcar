@@ -7,6 +7,8 @@ import struct
 class MySerial:
     def __init__(self,baud=115200):
         self.ser=serial.Serial("/dev/ttyAMA0",baud)
+        print(self.ser)
+        print(self.ser.close)
 
     def __del__(self):
         self.ser.close()

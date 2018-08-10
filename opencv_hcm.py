@@ -51,12 +51,16 @@ class Cross:
 
     def add_line(self,line):
         if line.isrow==True:
+            if len(self.rows)>=2:
+                return None
             for i in self.rows:
                 if self.is_same_line(i,line):
                     break
             else:
                 self.rows.append(line)
         else:
+            if len(self.cols)>=2:
+                return None
             for i in self.cols:
                 if self.is_same_line(i,line):
                     break
@@ -99,7 +103,7 @@ class Cross:
 def get_cross(image,getImg=True):
     image=cv2.GaussianBlur(image,(3,3),7)
     height=int(image.shape[0])
-    image=image[int(height/2):height-1,:]
+    image=image[int(height/3):height-1,:]
 
     #cv2.illuminationChange(image,)
     gray=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)

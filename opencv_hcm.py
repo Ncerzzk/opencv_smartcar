@@ -112,9 +112,9 @@ def get_cross(image,getImg=True):
     kernel = np.ones((5, 5), np.uint8)
     gray = cv2.dilate(gray, kernel, iterations=1)
     lines=cv2.HoughLinesP(gray,1,np.pi/180,80,minLineLength=150,maxLineGap=400)
-
-    if len(lines) <4:
-        return (0,0)
+    
+    if lines is None:
+        return None
 
     cross=Cross()
 
@@ -133,7 +133,7 @@ def get_cross(image,getImg=True):
         (x,y)=cross.get_cross_point()
         cv2.circle(cimg,(x,y),2,(255,255,0),2)
     except:
-        return (0,0)
+        return None 
 
     if getImg==True:
         return cimg

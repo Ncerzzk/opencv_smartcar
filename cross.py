@@ -1,14 +1,20 @@
 from opencv_hcm import *
 import cv2
 import numpy as np
+from m_serial import *
+import time
 
 '''
 cap = cv2.VideoCapture(0)
 
+serial=MySerial(115200)
 while(1):
     ret,frame=cap.read()
     if ret:
-        (x,y)=get_cross(frame,getImg=False)
+        cross=get_cross(frame,getImg=True)
+    serial.send_cross_data(5,1)
+    time.sleep(5)
+
 
 '''
 

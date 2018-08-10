@@ -102,7 +102,7 @@ class Cross:
 def get_cross(image,getImg=True):
     image=cv2.GaussianBlur(image,(3,3),7)
     height=int(image.shape[0])
-    image=image[int(height/2):height-1,:]
+    image=image[int(height/3):height-1,:]
 
     #cv2.illuminationChange(image,)
     gray=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
@@ -117,7 +117,8 @@ def get_cross(image,getImg=True):
 
     lines=cv2.HoughLinesP(gray,1,np.pi/180,80,minLineLength=150,maxLineGap=400)
 
-    if len(lines) <4:
+    
+    if lines is None:
         return None
 
     cross=Cross()
@@ -137,7 +138,7 @@ def get_cross(image,getImg=True):
         (x,y)=cross.get_cross_point()
         cv2.circle(cimg,(x,y),2,(255,255,0),2)
     except:
-        return None
+        return None 
 
     if getImg==True:
         return cimg

@@ -103,12 +103,8 @@ def get_cross(image,getImg=True):
 
     #cv2.illuminationChange(image,)
     gray=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
-
     #ret,gray=cv2.threshold(gray,127,255,0)
-
     #t,contours,h=cv2.findContours(gray,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
-
-
     #gray = cv2.Laplacian(gray, cv2.CV_8U, gray, 1)
     gray=cv2.Canny(gray,200,200)
 
@@ -116,28 +112,29 @@ def get_cross(image,getImg=True):
     kernel = np.ones((5, 5), np.uint8)
     gray = cv2.dilate(gray, kernel, iterations=1)
     lines=cv2.HoughLinesP(gray,1,np.pi/180,80,minLineLength=150,maxLineGap=400)
+
+    if len(lines) <4:
+        return (0,0)
+
     cross=Cross()
 
-    try:
-        for j in lines:
-            i=j[0]
-            x1=i[0]
-            y1=i[1]
-            x2=i[2]
-            y2=i[3]
-            temp=Line(x1,y1,x2,y2)
-            print(temp.lengh)
-            cross.add_line(temp)
-            cv2.line(cimg,(x1,y1),(x2,y2),(0,255,0),2)
-    except:
-        print("err")
-        return None
+    for j in lines:
+        i=j[0]
+        x1=i[0]
+        y1=i[1]
+        x2=i[2]
+        y2=i[3]
+        temp=Line(x1,y1,x2,y2)
+        cross.add_line(temp)
+        cv2.line(cimg,(x1,y1),(x2,y2),(0,255,0),2)
+
     #cv2.drawContours(cimg, contours, -1, (0, 255, 0), 2)
     try:
         (x,y)=cross.get_cross_point()
         cv2.circle(cimg,(x,y),2,(255,255,0),2)
     except:
-        return None
+        return (0,0)
+
     if getImg==True:
         return cimg
     else:

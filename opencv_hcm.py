@@ -2,9 +2,6 @@ import cv2
 import numpy as np
 import time
 
-img=cv2.imread("1533610779.jpg")
-src=img
-
 def get_chess(image,minR=230,maxR=250,hough_pram2=15):
     image=cv2.GaussianBlur(image,(3,3),7)
     gray=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
@@ -28,8 +25,6 @@ def get_chess(image,minR=230,maxR=250,hough_pram2=15):
         cv2.circle(cimg, (i[0], i[1]), 2, (255,0,0), 2)
     return cimg
     #return (x,y,r)
-
-img=cv2.imread("1533811738.jpg")
 
 class Line:
     def __init__(self,x1,y1,x2,y2):
@@ -110,7 +105,6 @@ def get_cross(image):
     #t,contours,h=cv2.findContours(gray,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
 
 
-    cv2.imshow("line1", gray)
     #gray = cv2.Laplacian(gray, cv2.CV_8U, gray, 1)
     gray=cv2.Canny(gray,200,200)
 
@@ -136,15 +130,5 @@ def get_cross(image):
         return None
     #cv2.drawContours(cimg, contours, -1, (0, 255, 0), 2)
 
+    return cross.get_cross_point()
 
-    cv2.circle(cimg,cross.get_cross_point(),2,(255,0,0),2)
-    cv2.imshow("line",cimg)
-    cv2.waitKey()
-'''
-img=get_chess(img)
-if img is not None:
-    cv2.imshow("test1", img)
-
-cv2.waitKey()'''
-
-get_cross(img)

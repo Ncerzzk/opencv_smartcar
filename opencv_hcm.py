@@ -51,12 +51,16 @@ class Cross:
 
     def add_line(self,line):
         if line.isrow==True:
+            if len(self.rows)>=2:
+                return None
             for i in self.rows:
                 if self.is_same_line(i,line):
                     break
             else:
                 self.rows.append(line)
         else:
+            if len(self.cols)>=2:
+                return None
             for i in self.cols:
                 if self.is_same_line(i,line):
                     break
@@ -65,19 +69,18 @@ class Cross:
 
     def get_cross_point(self):
         sumy=0
-        if len(self.rows)==0 or len(self.cols)==0:
+        if len(self.rows)!=2 or len(self.cols)!=2:
             raise Exception
+
         for i in self.rows:
             liney=(i.start[1]+i.end[1])/2
             sumy+=liney
         cross_y=int(sumy/len(self.rows))
-        cnt=0
 
         sumx=0
         for i in self.cols:
             linex=(i.start[0]+i.end[0])/2
             sumx+=linex
-            cnt+=1
         cross_x=int(sumx/len(self.cols))
 
         return (cross_x,cross_y)
@@ -111,10 +114,11 @@ def get_cross(image,getImg=True):
     cimg = cv2.cvtColor(gray, cv2.COLOR_GRAY2BGR)
     kernel = np.ones((5, 5), np.uint8)
     gray = cv2.dilate(gray, kernel, iterations=1)
+
     lines=cv2.HoughLinesP(gray,1,np.pi/180,80,minLineLength=150,maxLineGap=400)
 
     if len(lines) <4:
-        return (0,0)
+        return None
 
     cross=Cross()
 
@@ -133,7 +137,7 @@ def get_cross(image,getImg=True):
         (x,y)=cross.get_cross_point()
         cv2.circle(cimg,(x,y),2,(255,255,0),2)
     except:
-        return (0,0)
+        return None
 
     if getImg==True:
         return cimg

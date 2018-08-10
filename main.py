@@ -7,6 +7,8 @@ import os
 
 class CrossHandle(tornado.web.RequestHandler):
     def get(self):
+        for i in range(0,25):
+            ret, image = self.application.cap.read()
         ret, image = self.application.cap.read()
         if ret:
             self.set_header("Content-Type", "image/jpeg")
@@ -14,6 +16,7 @@ class CrossHandle(tornado.web.RequestHandler):
             self.set_header("content-transfer-encoding", "binary")
             src=image.copy()
             image=get_cross(image,True)
+            image=None
             if image is None:
                 image=src
             r, i = cv2.imencode('.jpg', image)

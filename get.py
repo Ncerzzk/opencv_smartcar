@@ -1,14 +1,16 @@
 import cv2
 import numpy as np
 import time
-from test import *
+from opencv_hcm import *
 
 cap = cv2.VideoCapture(2)
 while(1):
     # get a frame
     ret, frame = cap.read()
     # show a frame
-    img=get_chess(frame)
+    #img=get_chess(frame,True)
+    img=get_cross(frame)
+    img=None
     if img is None:
         cv2.imshow("capture", frame)
     else:

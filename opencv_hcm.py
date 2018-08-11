@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 import time
+import math
 
 def get_chess(image,minR=230,maxR=250,hough_pram2=15,getImg=True):
     image=cv2.GaussianBlur(image,(3,3),7)
@@ -29,10 +30,17 @@ def get_chess(image,minR=230,maxR=250,hough_pram2=15,getImg=True):
         return (x,y,r)
 
 class Line:
-    def __init__(self,x1,y1,x2,y2):
+    def __init__(self,x1=0,y1=0,x2=0,y2=0,k=None,b=None):
         self.start=(x1,y1)
         self.end=(x2,y2)
-        self.k=(y2-y1)/(x2-x1)
+        if k is None:
+            self.k=(y2-y1)/(x2-x1)
+        else:
+            self.k=k
+        if b is None:
+            self.b=-self.k*x1+y1
+        else:
+            self.b=b
         if abs(self.k)<1:
             self.isrow=True
         else:
@@ -68,6 +76,7 @@ class Cross:
                 self.cols.append(line)
 
     def get_cross_point(self):
+        '''
         sumy=0
         if len(self.rows)!=2 or len(self.cols)!=2:
             raise Exception
@@ -84,11 +93,44 @@ class Cross:
         cross_x=int(sumx/len(self.cols))
 
         return (cross_x,cross_y)
+        '''
+        if len(self.rows)!=2 or len(self.cols)!=2:
+            raise Exception
+        temp_k=(self.rows[0].k+self.rows[1].k)/2
+        temp_b=(self.rows[0].b+self.rows[1].b)/2
+        row_line=Line(k=temp_k,b=temp_b)
+
+        inf=float("inf")
+        if abs(self.cols[0].k)==inf or abs(self.cols[1].k)==inf: # 处理垂直的直线的情况
+            x=(self.cols[0].start[0]+self.cols[1].start[0])/2
+            y=row_line.k*x+row_line.b
+            x=int(x)
+            y=int(y)
+        else:
+            temp_k = (self.cols[0].k + self.cols[1].k) / 2
+            temp_b = (self.cols[0].b + self.cols[1].b) / 2
+            col_line = Line(k=temp_k, b=temp_b)
+            x,y=self.get_2lines_cross(row_line,col_line)
+        print(self.cols[0].k)
+        angle=math.atan(self.cols[0].k)*180/math.pi
+        print(angle)
+        return (x,y,angle)
+
+
+
+
+    def get_2lines_cross(self,line1,line2):
+        x=(line2.b-line1.b)/(line1.k-line2.k)
+        y=line1.k*x+line1.b
+
+        x=int(x)
+        y=int(y)
+        return (x,y)
 
 
     def is_same_line(self,line1,line2):
         if line1.isrow==True:
-            if abs(line1.start[1]-line2.start[1])<10:
+            if abs(line1.b-line2.b)<10:
                 return True
             else:
                 return False
@@ -102,25 +144,24 @@ class Cross:
 def get_cross(image,getImg=True):
     image=cv2.GaussianBlur(image,(3,3),7)
     height=int(image.shape[0])
-    image=image[int(height/3):height-1,:]
+    image=image[int(height/2):height-1,:]  # 切片，不要的扔掉
 
     #cv2.illuminationChange(image,)
     gray=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
     #ret,gray=cv2.threshold(gray,127,255,0)
-    #t,contours,h=cv2.findContours(gray,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
+    t,contours,h=cv2.findContours(gray,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)  # 找外轮廓
     #gray = cv2.Laplacian(gray, cv2.CV_8U, gray, 1)
-    gray=cv2.Canny(gray,200,200)
-
+    gray=cv2.Canny(gray,100,100)
+    cv2.drawContours(gray,contours,-1,(0,0,0),2)  #去掉外轮廓 实际上是为了去掉透视后的黑边
+    cv2.imshow("xx",gray)
     cimg = cv2.cvtColor(gray, cv2.COLOR_GRAY2BGR)
+
     kernel = np.ones((5, 5), np.uint8)
     gray = cv2.dilate(gray, kernel, iterations=1)
 
-    lines=cv2.HoughLinesP(gray,1,np.pi/180,80,minLineLength=150,maxLineGap=400)
-
-    
+    lines=cv2.HoughLinesP(gray,1,np.pi/180,120,minLineLength=150,maxLineGap=200)
     if lines is None:
         return None
-
     cross=Cross()
 
     for j in lines:
@@ -131,11 +172,11 @@ def get_cross(image,getImg=True):
         y2=i[3]
         temp=Line(x1,y1,x2,y2)
         cross.add_line(temp)
-        cv2.line(cimg,(x1,y1),(x2,y2),(0,255,0),2)
-
+        cv2.line(cimg,(x1,y1),(x2,y2),(0,255,0),1)
+    cv2.imshow("a",cimg)
     #cv2.drawContours(cimg, contours, -1, (0, 255, 0), 2)
     try:
-        (x,y)=cross.get_cross_point()
+        (x,y,angle)=cross.get_cross_point()  # 如果没找够4条线，这里会抛出异常
         cv2.circle(cimg,(x,y),2,(255,255,0),2)
     except:
         return None 
@@ -145,4 +186,17 @@ def get_cross(image,getImg=True):
     else:
         return (x,y)
 
+image=cv2.imread("1533967630.jpg")
+src=np.float32([[275,0],[316,0],[204,479],[384,479]])
+dst=np.float32([[275,0],[316,0],[275,479],[316,479]])
+H=cv2.getPerspectiveTransform(src,dst)
+image=cv2.warpPerspective(image,H,(0,0))
 
+image=cv2.imread("1533967822.jpg")
+image=cv2.warpPerspective(image,H,(0,0))
+cross=get_cross(image,True)
+if cross is not None:
+    cv2.imshow("test1",cross)
+
+#cv2.setMouseCallback('test',get_point)
+cv2.waitKey()

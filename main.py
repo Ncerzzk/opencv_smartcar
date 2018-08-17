@@ -17,6 +17,7 @@ class SaveHandle(tornado.web.RequestHandler):
             self.set_header("Refresh", "1")
             self.set_header("content-transfer-encoding", "binary")
             src=image.copy()
+            image=get_cross2(image,True)
             image=None
             if image is None:
                 image=src

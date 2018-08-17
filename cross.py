@@ -12,8 +12,8 @@ while(1):
     ret,frame=cap.read()
     if ret:
         (x,y,angle)=get_cross2(frame,getImg=False)
-    serial.send_cross_data(x,y)
-    time.sleep(0.05)
+        serial.send_cross_data(x,y)
+        time.sleep(0.05)
 
 '''
 def get_point(event,x,y,flags,param):

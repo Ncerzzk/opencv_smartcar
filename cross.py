@@ -1,7 +1,7 @@
 from opencv_hcm import *
 import cv2
 import numpy as np
-#from m_serial import *
+from m_serial import *
 import time
 
 
@@ -14,8 +14,8 @@ while(1):
     ret,frame=cap.read()
     if ret:
         frame=cv2.warpPerspective(frame,H,(0,0))
-        cross=get_cross2(frame,getImg=True)
-    serial.send_cross_data(5,1)
+        (x,y,angle)=get_cross2(frame,getImg=False)
+    serial.send_cross_data(x,y)
     time.sleep(0.05)
 
 

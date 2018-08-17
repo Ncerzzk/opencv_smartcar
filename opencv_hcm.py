@@ -171,7 +171,6 @@ def get_cross(image,getImg=True):
         temp=Line(x1,y1,x2,y2)
         cross.add_line(temp)
         cv2.line(cimg,(x1,y1),(x2,y2),(0,255,0),1)
-    cv2.imshow("a",cimg)
     #cv2.drawContours(cimg, contours, -1, (0, 255, 0), 2)
     try:
         (x,y,angle)=cross.get_cross_point()  # 如果没找够4条线，这里会抛出异常
@@ -195,9 +194,6 @@ def get_cross2(image,getImg=True):
 
     gray=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
 
-
-    cv2.imshow("init",gray)
-
     t,contours,h=cv2.findContours(gray,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)  # 找外轮廓
     #gray = cv2.Laplacian(gray, cv2.CV_8U, gray,5 )
     #ret, gray = cv2.threshold(gray, 180, 255, 0)
@@ -206,13 +202,16 @@ def get_cross2(image,getImg=True):
     cv2.drawContours(gray,contours,-1,(0,0,0),2)  #去掉外轮廓 实际上是为了去掉透视后的黑边
 
     kernel = np.ones((5, 5), np.uint8)
-    gray = cv2.dilate(gray, kernel, iterations=1)
+    gray = cv2.dilate(gray, kernel, iterations=3)
 
     cimg = cv2.cvtColor(gray, cv2.COLOR_GRAY2BGR)
    # gray = cv2.dilate(gray, kernel, iterations=3)
     lines=cv2.HoughLinesP(gray,1,np.pi/180,250,minLineLength=200,maxLineGap=300)
     if lines is None:
-        return None
+        if getImg==True:
+            return cimg
+        else:
+            return None
     cross=Cross()
 
     for j in lines:
@@ -233,8 +232,10 @@ def get_cross2(image,getImg=True):
         (x,y,angle)=cross.get_cross_point()  # 如果没找够4条线，这里会抛出异常
         cv2.circle(cimg,(x,y),2,(255,255,0),2)
     except:
-        return None
-    cv2.imshow("aaa", cimg)
+        if getImg==True:
+            return cimg
+        else:
+            return None
     if getImg==True:
         print(x,y,angle)
         return cimg

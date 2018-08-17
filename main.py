@@ -2,8 +2,13 @@ import tornado.ioloop
 import tornado.web
 
 from opencv_hcm import *
+import numpy as np
 
 import os
+
+src=np.float32([[1,141],[172,385],[281,95],[611,146]])
+H=get_H(src)
+
 
 class CrossHandle(tornado.web.RequestHandler):
     def get(self):
@@ -15,8 +20,8 @@ class CrossHandle(tornado.web.RequestHandler):
             self.set_header("Refresh", "1")
             self.set_header("content-transfer-encoding", "binary")
             src=image.copy()
-            image=get_cross(image,True)
-            image=None
+            image=cv2.warpPerspective(image,H,(0,0))
+            image=get_cross2(image,True)
             if image is None:
                 image=src
             r, i = cv2.imencode('.jpg', image)

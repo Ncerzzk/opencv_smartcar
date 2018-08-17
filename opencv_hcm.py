@@ -207,11 +207,12 @@ def get_cross(image,getImg=True):
         return (x,y)
 
 
-SRC=np.float32([[172,88],[64,331],[490,67],[921,193]])
+SRC=np.float32([[31,92],[27,327],[395,42],[702,96]])
 H=get_H(SRC)
 
 
 def get_cross2(image,getImg=True):
+    image=cv2.warpPerspective(image, H, (0, 0))
     height=int(image.shape[0])
     width=int(image.shape[0])
 
@@ -268,14 +269,6 @@ def get_cross2(image,getImg=True):
         return cimg
     else:
         return (x,y,angle)
-
-
-
-
-
-
-def get_wp(img):
-    return cv2.warpPerspective(img, H, (0, 0))
 
 
 

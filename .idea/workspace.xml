@@ -2,7 +2,59 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="086b0930-7e60-43d9-95b1-31618bf774c2" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/1534502104.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/1534502105.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/1534502106.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/1534502107.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/1534502108.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/1534502109.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/1534502122.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/1534502133.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/1534502134.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/1534502135.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/1534502143.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/1534502144.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/1534515300.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/1534515302.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/1534515304.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/1534515306.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/1534515308.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/1534515310.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/1534515311.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/1534515313.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/1534515315.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/1534515317.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/1534515319.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/1534515321.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/1534515323.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/1534515325.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/1534515327.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/1534515329.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/1534515331.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/1534515333.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/1534515335.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/1534515337.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/1534515339.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/1534515341.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/1534515343.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/1534515345.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/1534515346.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/1534515348.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/1534515350.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/1534515352.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/1534515354.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/1534515356.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/1534515359.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/1534515361.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/1534515362.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/1534515364.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/1534515366.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cross.jpg" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cross.py" afterPath="$PROJECT_DIR$/cross.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/get.py" afterPath="$PROJECT_DIR$/get.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.py" afterPath="$PROJECT_DIR$/main.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/opencv_hcm.py" afterPath="$PROJECT_DIR$/opencv_hcm.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -14,11 +66,35 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file leaf-file-name="cross.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="get.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/get.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="224">
+              <caret line="9" column="18" lean-forward="true" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/main.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="264">
+              <caret line="41" column="28" lean-forward="false" selection-start-line="41" selection-start-column="28" selection-end-line="41" selection-end-column="28" />
+              <folding>
+                <element signature="e#0#21#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="cross.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cross.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="12" column="11" lean-forward="true" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
+            <state relative-caret-position="198">
+              <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
               <folding>
                 <element signature="e#0#24#0" expanded="true" />
               </folding>
@@ -26,43 +102,38 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="m_serial.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/m_serial.py">
+      <file leaf-file-name="opencv_hcm.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/opencv_hcm.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-198">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="-6991">
+              <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+                <element signature="e#3925#4046#0" expanded="false" />
+                <element signature="e#4417#5718#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="get.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/get.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="11" column="18" lean-forward="false" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="1534502104.jpg" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/1534502104.jpg">
+      <file leaf-file-name="1534521926.jpg" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/1534521926.jpg">
           <provider selected="true" editor-type-id="images">
             <state />
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="opencv_hcm.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/opencv_hcm.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="797">
-              <caret line="244" column="20" lean-forward="true" selection-start-line="244" selection-start-column="20" selection-end-line="244" selection-end-column="20" />
-              <folding>
-                <element signature="e#0#10#0" expanded="true" />
-                <element signature="e#3347#3468#0" expanded="false" />
-              </folding>
-            </state>
+      <file leaf-file-name="1534521952.jpg" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/1534521952.jpg">
+          <provider selected="true" editor-type-id="images">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="1534521974.jpg" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/1534521974.jpg">
+          <provider selected="true" editor-type-id="images">
+            <state />
           </provider>
         </entry>
       </file>
@@ -91,10 +162,10 @@
         <option value="$PROJECT_DIR$/eagle.py" />
         <option value="$PROJECT_DIR$/getnum.py" />
         <option value="$PROJECT_DIR$/test.py" />
-        <option value="$PROJECT_DIR$/main.py" />
-        <option value="$PROJECT_DIR$/get.py" />
         <option value="$PROJECT_DIR$/opencv_hcm.py" />
         <option value="$PROJECT_DIR$/cross.py" />
+        <option value="$PROJECT_DIR$/get.py" />
+        <option value="$PROJECT_DIR$/main.py" />
       </list>
     </option>
   </component>
@@ -318,8 +389,8 @@
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Python.get" />
-        <item index="1" class="java.lang.String" itemvalue="Python.cross" />
-        <item index="2" class="java.lang.String" itemvalue="Python.opencv_hcm" />
+        <item index="1" class="java.lang.String" itemvalue="Python.opencv_hcm" />
+        <item index="2" class="java.lang.String" itemvalue="Python.cross" />
         <item index="3" class="java.lang.String" itemvalue="Python.main" />
         <item index="4" class="java.lang.String" itemvalue="Python.test" />
       </list>
@@ -375,115 +446,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/1533967632.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/1533967680.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/1533967777.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/1533967778.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/1533967782.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/1534309221.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/1534309222.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-139">
-          <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/getnum.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/1533610770.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/1533610771.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/1533610772.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/1533610778.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/1533610779.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/1533610786.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/1533610785.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/1533640921.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/1533640927.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/1533640928.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/1533640931.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/1533640932.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/1533640933.jpg">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -614,25 +576,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/get.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="11" column="18" lean-forward="false" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/opencv_hcm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="797">
-          <caret line="244" column="20" lean-forward="true" selection-start-line="244" selection-start-column="20" selection-end-line="244" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-            <element signature="e#3347#3468#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/m_serial.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-198">
@@ -641,12 +584,144 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/1534517941.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/1534517251.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/1534517951.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/1534517953.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/1534517952.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/1534517977.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/1534517954.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/1534517978.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/1534517979.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/1534517950.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/1534517940.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/1534520166.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/1534520168.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/1534521969.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/1534521957.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/1534521955.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/1534521974.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/1534521921.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/1534521926.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/1534521952.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/opencv_hcm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-6991">
+          <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#3925#4046#0" expanded="false" />
+            <element signature="e#4417#5718#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/cross.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="12" column="11" lean-forward="true" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
+        <state relative-caret-position="198">
+          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding>
             <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/get.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="9" column="18" lean-forward="true" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="41" column="28" lean-forward="false" selection-start-line="41" selection-start-column="28" selection-end-line="41" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
           </folding>
         </state>
       </provider>

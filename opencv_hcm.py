@@ -3,6 +3,29 @@ import numpy as np
 import time
 import math
 
+def get_H(src_list):
+    left_up=src_list[0]
+    left_down=src_list[1]
+    right_up=src_list[2]
+    right_down=src_list[3]
+
+    dst=list()
+    '''
+    dst.append([left_down[0],right_up[1]])
+    dst.append([left_down[0],left_down[1]])
+    dst.append([right_up[0],right_up[1]])
+    dst.append([right_up[0],left_down[1]])
+    '''
+
+    dst.append([left_up[0], right_up[1]])
+    dst.append([left_up[0], left_down[1]])
+    dst.append([right_up[0], right_up[1]])
+    dst.append([right_up[0], left_down[1]])
+
+    dst=np.array(dst)
+    return cv2.getPerspectiveTransform(src_list,dst)
+
+
 def get_chess(image,minR=230,maxR=250,hough_pram2=15,getImg=True):
     image=cv2.GaussianBlur(image,(3,3),7)
     gray=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
@@ -183,37 +206,45 @@ def get_cross(image,getImg=True):
     else:
         return (x,y)
 
+
+SRC=np.float32([[172,88],[64,331],[490,67],[921,193]])
+H=get_H(SRC)
+
+
 def get_cross2(image,getImg=True):
     height=int(image.shape[0])
     width=int(image.shape[0])
 
 
     #image=image[0:int(height/12)*6,:]  # 切片，不要的扔掉
-    #cv2.imshow('a',image)
-    #image=image[:,int(width/4):width]
+
+    image=image[0:int(height/12)*6:,int(width/4):width]
 
     gray=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
 
     t,contours,h=cv2.findContours(gray,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)  # 找外轮廓
     #gray = cv2.Laplacian(gray, cv2.CV_8U, gray,5 )
-    #ret, gray = cv2.threshold(gray, 180, 255, 0)
-    gray = cv2.Canny(gray, 100, 100)
+    ret, gray = cv2.threshold(gray, 170, 255, 0)
+    gray = cv2.Canny(gray, 80, 50)
+
 
     cv2.drawContours(gray,contours,-1,(0,0,0),2)  #去掉外轮廓 实际上是为了去掉透视后的黑边
 
+
     kernel = np.ones((5, 5), np.uint8)
-    gray = cv2.dilate(gray, kernel, iterations=3)
+    #gray = cv2.morphologyEx(gray, cv2.MORPH_GRADIENT, kernel)   #形态学梯度
+    #gray = cv2.morphologyEx(gray, cv2.MORPH_CLOSE, kernel)
+    #gray = cv2.dilate(gray, kernel, iterations=1)
 
     cimg = cv2.cvtColor(gray, cv2.COLOR_GRAY2BGR)
-   # gray = cv2.dilate(gray, kernel, iterations=3)
-    lines=cv2.HoughLinesP(gray,1,np.pi/180,250,minLineLength=200,maxLineGap=300)
+    gray = cv2.dilate(gray, kernel, iterations=1)
+    cross=Cross()
+    lines=cv2.HoughLinesP(gray,1,np.pi/180,100,minLineLength=100,maxLineGap=300)
     if lines is None:
         if getImg==True:
             return cimg
         else:
             return None
-    cross=Cross()
-
     for j in lines:
         i=j[0]
         x1=i[0]
@@ -221,11 +252,7 @@ def get_cross2(image,getImg=True):
         x2=i[2]
         y2=i[3]
         temp=Line(x1,y1,x2,y2)
-        if abs(temp.k)>2 :
-            if x1>70:
-                cross.add_line(temp)
-        else:
-            cross.add_line(temp)
+        cross.add_line(temp)
         cv2.line(cimg,(x1,y1),(x2,y2),(0,255,0),1)
 
     try:
@@ -242,28 +269,24 @@ def get_cross2(image,getImg=True):
     else:
         return (x,y,angle)
 
-def get_H(src_list):
-    left_up=src_list[0]
-    left_down=src_list[1]
-    right_up=src_list[2]
-    right_down=src_list[3]
 
-    dst=list()
 
-    dst.append([left_up[0],right_up[1]])
-    dst.append([left_up[0],left_down[1]])
-    dst.append([right_up[0],right_up[1]])
-    dst.append([right_up[0],left_down[1]])
-    dst=np.array(dst)
-    return cv2.getPerspectiveTransform(src_list,dst)
+
+
+
+def get_wp(img):
+    return cv2.warpPerspective(img, H, (0, 0))
+
+
+
 '''
 #src=np.float32([[116,113],[346,267],[277,84],[601,132]])
 #dst=np.float32([[116,84],[116,267],[277,84],[277,267]])
 #cv2.imshow("test",image)
-src=np.float32([[1,141],[172,385],[281,95],[611,146]])
+src=np.float32([[31,92],[27,327],[395,42],[702,96]])
 H=get_H(src)
 
-image=cv2.imread("1534502104.jpg")
+image=cv2.imread("1534521974.jpg")
 image=cv2.warpPerspective(image,H,(0,0))
 
 cross=get_cross2(image,True)
@@ -272,4 +295,5 @@ if cross is not None:
 
 #cv2.setMouseCallback('test',get_point)
 cv2.waitKey()
+
 '''

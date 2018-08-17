@@ -111,9 +111,7 @@ class Cross:
             temp_b = (self.cols[0].b + self.cols[1].b) / 2
             col_line = Line(k=temp_k, b=temp_b)
             x,y=self.get_2lines_cross(row_line,col_line)
-        print(self.cols[0].k)
         angle=math.atan(self.cols[0].k)*180/math.pi
-        print(angle)
         return (x,y,angle)
 
 
@@ -186,17 +184,91 @@ def get_cross(image,getImg=True):
     else:
         return (x,y)
 
-image=cv2.imread("1533967630.jpg")
-src=np.float32([[275,0],[316,0],[204,479],[384,479]])
-dst=np.float32([[275,0],[316,0],[275,479],[316,479]])
-H=cv2.getPerspectiveTransform(src,dst)
+def get_cross2(image,getImg=True):
+    height=int(image.shape[0])
+    width=int(image.shape[0])
+
+
+    #image=image[0:int(height/12)*6,:]  # 切片，不要的扔掉
+    #cv2.imshow('a',image)
+    #image=image[:,int(width/4):width]
+
+    gray=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
+
+
+    cv2.imshow("init",gray)
+
+    t,contours,h=cv2.findContours(gray,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)  # 找外轮廓
+    #gray = cv2.Laplacian(gray, cv2.CV_8U, gray,5 )
+    #ret, gray = cv2.threshold(gray, 180, 255, 0)
+    gray = cv2.Canny(gray, 100, 100)
+
+    cv2.drawContours(gray,contours,-1,(0,0,0),2)  #去掉外轮廓 实际上是为了去掉透视后的黑边
+
+    kernel = np.ones((5, 5), np.uint8)
+    gray = cv2.dilate(gray, kernel, iterations=1)
+
+    cimg = cv2.cvtColor(gray, cv2.COLOR_GRAY2BGR)
+   # gray = cv2.dilate(gray, kernel, iterations=3)
+    lines=cv2.HoughLinesP(gray,1,np.pi/180,250,minLineLength=200,maxLineGap=300)
+    if lines is None:
+        return None
+    cross=Cross()
+
+    for j in lines:
+        i=j[0]
+        x1=i[0]
+        y1=i[1]
+        x2=i[2]
+        y2=i[3]
+        temp=Line(x1,y1,x2,y2)
+        if abs(temp.k)>2 :
+            if x1>70:
+                cross.add_line(temp)
+        else:
+            cross.add_line(temp)
+        cv2.line(cimg,(x1,y1),(x2,y2),(0,255,0),1)
+
+    try:
+        (x,y,angle)=cross.get_cross_point()  # 如果没找够4条线，这里会抛出异常
+        cv2.circle(cimg,(x,y),2,(255,255,0),2)
+    except:
+        return None
+    cv2.imshow("aaa", cimg)
+    if getImg==True:
+        print(x,y,angle)
+        return cimg
+    else:
+        return (x,y,angle)
+
+def get_H(src_list):
+    left_up=src_list[0]
+    left_down=src_list[1]
+    right_up=src_list[2]
+    right_down=src_list[3]
+
+    dst=list()
+
+    dst.append([left_up[0],right_up[1]])
+    dst.append([left_up[0],left_down[1]])
+    dst.append([right_up[0],right_up[1]])
+    dst.append([right_up[0],left_down[1]])
+    dst=np.array(dst)
+    return cv2.getPerspectiveTransform(src_list,dst)
+'''
+#src=np.float32([[116,113],[346,267],[277,84],[601,132]])
+#dst=np.float32([[116,84],[116,267],[277,84],[277,267]])
+#cv2.imshow("test",image)
+src=np.float32([[1,141],[172,385],[281,95],[611,146]])
+H=get_H(src)
+
+image=cv2.imread("1534502104.jpg")
 image=cv2.warpPerspective(image,H,(0,0))
 
-image=cv2.imread("1533967822.jpg")
-image=cv2.warpPerspective(image,H,(0,0))
-cross=get_cross(image,True)
+cross=get_cross2(image,True)
 if cross is not None:
     cv2.imshow("test1",cross)
 
 #cv2.setMouseCallback('test',get_point)
 cv2.waitKey()
+'''

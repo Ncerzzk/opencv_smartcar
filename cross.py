@@ -6,14 +6,17 @@ import time
 
 
 cap = cv2.VideoCapture(0)
+src=np.float32([[1,141],[172,385],[281,95],[611,146]])
+H=get_H(src)
 
 serial=MySerial(115200)
 while(1):
     ret,frame=cap.read()
     if ret:
+        frame=cv2.warpPerspective(frame,H,(0,0))
         cross=get_cross2(frame,getImg=True)
     serial.send_cross_data(5,1)
-    time.sleep(5)
+    time.sleep(0.05)
 
 
 

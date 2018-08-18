@@ -206,7 +206,8 @@ def get_cross(image,getImg=True):
         return (x,y)
 
 
-SRC=np.float32([[107,210],[415,371],[355,187],[635,236]])
+#SRC=np.float32([[56,42],[386,193],[343,13],[639,66]])
+SRC=np.float32([[106,153],[460,476],[272,109],[625,277]])
 H=get_H(SRC)
 
 
@@ -369,7 +370,9 @@ def get_cross5(image,getImg=True):
     width=int(image.shape[1])
 
     #image=image[0:int(height/12)*6,:]  # 切片，不要的扔掉
-    image = cv2.warpPerspective(image, H, (0, 0))
+    image = cv2.warpPerspective(image, H, (640, 480))
+    #image=image[:,0:int(width/2)]
+    cv2.imshow("test",image)
     #image=image[0:int(height/12)*6:,int(width/4):width]
     #image=image[int(height/12)*:height,:]
     gray=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
@@ -382,7 +385,7 @@ def get_cross5(image,getImg=True):
     kernel = np.ones((5, 5), np.uint8)
     #gray = cv2.dilate(gray, kernel, iterations=1)
 
-    lines = cv2.HoughLinesP(gray, 1, np.pi / 180, 90, minLineLength=100, maxLineGap=300)
+    lines = cv2.HoughLinesP(gray, 1, np.pi / 180, 120, minLineLength=100, maxLineGap=300)
     cimg = cv2.cvtColor(gray, cv2.COLOR_GRAY2BGR)
     cross = Cross()
     if lines is None:
@@ -397,11 +400,8 @@ def get_cross5(image,getImg=True):
         x2 = i[2]
         y2 = i[3]
         temp = Line(x1, y1, x2, y2)
-        if abs(temp.k)<1:
-            if y1>300:
-                cross.add_line(temp)
-        else:
-            cross.add_line(temp)
+
+        cross.add_line(temp)
         cv2.line(cimg, (x1, y1), (x2, y2), (0, 255, 0), 1)
     try:
         (x, y, angle) = cross.get_cross_point()  # 如果没找够4条线，这里会抛出异常
@@ -424,7 +424,7 @@ def get_cross5(image,getImg=True):
 #src=np.float32([[31,92],[27,327],[395,42],[702,96]])
 #H#=get_H(src)
 
-image=cv2.imread("1534553104.jpg")
+image=cv2.imread("1534609892.jpg")
 #image=cv2.warpPerspective(image,H,(0,0))
 
 cross=get_cross5(image,True)
@@ -433,4 +433,5 @@ if cross is not None:
 
 #cv2.setMouseCallback('test',get_point)
 cv2.waitKey()
+
 '''

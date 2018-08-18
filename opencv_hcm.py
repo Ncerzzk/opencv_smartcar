@@ -99,24 +99,29 @@ class Cross:
                 self.cols.append(line)
 
     def get_cross_point(self):
+        if len(self.rows)==2:
+            row_width=int(abs(self.rows[0].start[1]-self.rows[1].start[1]))
+        if len(self.cols)==2:
+            col_width=int(abs(self.cols[0].start[0]-self.cols[1].start[0]))
+
         if len(self.rows)+len(self.cols)==3:
             if len(self.rows)==1:
-                width=abs(self.cols[0].start[0]-self.cols[1].start[0])
-                width=int(width)
                 new_row=Line(x1=self.rows[0].start[0],
-                             y1=self.rows[0].start[1]+width,
+                             y1=self.rows[0].start[1]+col_width,
                              x2=self.rows[0].end[0],
-                             y2=self.rows[0].end[1]+width)
+                             y2=self.rows[0].end[1]+col_width)
                 self.add_line(new_row)
+                row_width=col_width
             else:
-                width=abs(self.rows[0].start[1]-self.rows[1].start[1])
-                width=int(width)
-                new_col=Line(x1=self.cols[0].start[0]-width,
+                new_col=Line(x1=self.cols[0].start[0]-row_width,
                              y1=self.cols[0].start[1],
-                             x2=self.cols[0].end[0]-width,
+                             x2=self.cols[0].end[0]-row_width,
                              y2=self.cols[0].end[1])
                 self.add_line(new_col)
+                col_width=row_width
         if len(self.rows)!=2 or len(self.cols)!=2:
+            raise Exception
+        if abs(row_width-col_width)>20:
             raise Exception
         temp_k=(self.rows[0].k+self.rows[1].k)/2
         temp_b=(self.rows[0].b+self.rows[1].b)/2
@@ -368,6 +373,7 @@ def get_cross4(image,getImg=True):
 def get_cross5(image,getImg=True):
     height=int(image.shape[0])
     width=int(image.shape[1])
+    kernel = np.ones((5, 5), np.uint8)
 
     #image=image[0:int(height/12)*6,:]  # 切片，不要的扔掉
     image = cv2.warpPerspective(image, H, (640, 480))
@@ -375,13 +381,14 @@ def get_cross5(image,getImg=True):
     #image=image[0:int(height/12)*6:,int(width/4):width]
     #image=image[int(height/12)*:height,:]
     gray=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
-
+    gray = cv2.erode(gray, kernel, iterations=5)    #腐蚀
     t,contours,h=cv2.findContours(gray,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)  # 找外轮廓
     #gray = cv2.Laplacian(gray, cv2.CV_8U, gray,5 )
     #ret, gray = cv2.threshold(gray, 140, 255, 0)
+
     gray=cv2.Canny(gray,300,300)
     cv2.drawContours(gray,contours,-1,(0,0,0),2)  #去掉外轮廓 实际上是为了去掉透视后的黑边
-    kernel = np.ones((5, 5), np.uint8)
+
     gray = cv2.dilate(gray, kernel, iterations=1)
 
     lines = cv2.HoughLinesP(gray, 1, np.pi / 180, 120, minLineLength=100, maxLineGap=300)
@@ -426,7 +433,7 @@ def get_cross5(image,getImg=True):
 #src=np.float32([[31,92],[27,327],[395,42],[702,96]])
 #H#=get_H(src)
 
-image=cv2.imread("1534609892.jpg")
+image=cv2.imread("1534624382.jpg")
 #image=cv2.warpPerspective(image,H,(0,0))
 
 cross=get_cross5(image,True)
@@ -435,5 +442,5 @@ if cross is not None:
 
 #cv2.setMouseCallback('test',get_point)
 cv2.waitKey()
-
 '''
+

@@ -372,7 +372,6 @@ def get_cross5(image,getImg=True):
     #image=image[0:int(height/12)*6,:]  # 切片，不要的扔掉
     image = cv2.warpPerspective(image, H, (640, 480))
     #image=image[:,0:int(width/2)]
-    cv2.imshow("test",image)
     #image=image[0:int(height/12)*6:,int(width/4):width]
     #image=image[int(height/12)*:height,:]
     gray=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)

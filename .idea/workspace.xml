@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="086b0930-7e60-43d9-95b1-31618bf774c2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/opencv_hcm.py" afterPath="$PROJECT_DIR$/opencv_hcm.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,15 +17,15 @@
       <file leaf-file-name="opencv_hcm.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/opencv_hcm.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="389">
-              <caret line="436" column="3" lean-forward="false" selection-start-line="436" selection-start-column="3" selection-end-line="436" selection-end-column="3" />
+            <state relative-caret-position="-403">
+              <caret line="373" column="34" lean-forward="false" selection-start-line="373" selection-start-column="34" selection-end-line="373" selection-end-column="34" />
               <folding>
                 <element signature="e#80#630#0" expanded="false" />
                 <element signature="e#704#1469#0" expanded="false" />
                 <element signature="e#1487#2017#0" expanded="false" />
                 <element signature="e#2037#4776#0" expanded="false" />
                 <element signature="e#6291#7874#0" expanded="false" />
-                <marker date="1534610070652" expanded="false" signature="4812:6118" ph="..." />
+                <marker date="1534610103681" expanded="false" signature="4812:6118" ph="..." />
               </folding>
             </state>
           </provider>
@@ -624,15 +623,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/opencv_hcm.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="436" column="3" lean-forward="false" selection-start-line="436" selection-start-column="3" selection-end-line="436" selection-end-column="3" />
+        <state relative-caret-position="-403">
+          <caret line="373" column="34" lean-forward="false" selection-start-line="373" selection-start-column="34" selection-end-line="373" selection-end-column="34" />
           <folding>
             <element signature="e#80#630#0" expanded="false" />
             <element signature="e#704#1469#0" expanded="false" />
             <element signature="e#1487#2017#0" expanded="false" />
             <element signature="e#2037#4776#0" expanded="false" />
             <element signature="e#6291#7874#0" expanded="false" />
-            <marker date="1534610070652" expanded="false" signature="4812:6118" ph="..." />
+            <marker date="1534610103681" expanded="false" signature="4812:6118" ph="..." />
           </folding>
         </state>
       </provider>

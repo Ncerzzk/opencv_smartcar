@@ -41,7 +41,7 @@ class CrossHandle(tornado.web.RequestHandler):
             self.set_header("Refresh", "1")
             self.set_header("content-transfer-encoding", "binary")
             src=image.copy()
-            image=get_cross2(image,True)
+            image=get_cross5(image,True)
             if image is None:
                 image=src
             r, i = cv2.imencode('.jpg', image)

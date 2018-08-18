@@ -335,7 +335,6 @@ def get_cross3(image, getImg=True):
     try:
         (x,y,angle)=cross.get_cross_point()  # 如果没找够4条线，这里会抛出异常
         cv2.circle(cimg,(x,y),2,(255,255,0),2)
-        cv2.imshow('test', cimg)
     except:
         if getImg==True:
             return cimg
@@ -365,7 +364,6 @@ def get_cross4(image,getImg=True):
         box=cv2.boxPoints(rect)
         box=np.int0(box)
         cv2.drawContours(image,[box],0,[0,0,255],3)
-    cv2.imshow("can",image)
 
 def get_cross5(image,getImg=True):
     height=int(image.shape[0])
@@ -420,9 +418,8 @@ def get_cross5(image,getImg=True):
         return cimg
     else:
         return (x, y, angle)
-    cv2.imshow("sss",cimg)
 
-
+'''
 #src=np.float32([[116,113],[346,267],[277,84],[601,132]])
 #dst=np.float32([[116,84],[116,267],[277,84],[277,267]])
 #cv2.imshow("test",image)
@@ -438,4 +435,4 @@ if cross is not None:
 
 #cv2.setMouseCallback('test',get_point)
 cv2.waitKey()
-
+'''

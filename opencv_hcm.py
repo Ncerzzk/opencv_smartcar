@@ -351,7 +351,6 @@ def get_cross4(image,getImg=True):
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     #gray = cv2.Canny(gray, 200, 200)
     ret, gray = cv2.threshold(gray, 200, 255, 1)
-    cv2.imshow("shold",gray)
     i,cs,h=cv2.findContours(gray,cv2.RETR_LIST,cv2.CHAIN_APPROX_SIMPLE)
     for c in cs:
         x,y,w,h=cv2.boundingRect(c)
@@ -383,7 +382,7 @@ def get_cross5(image,getImg=True):
     kernel = np.ones((5, 5), np.uint8)
     #gray = cv2.dilate(gray, kernel, iterations=1)
 
-    lines = cv2.HoughLinesP(gray, 1, np.pi / 180, 100, minLineLength=200, maxLineGap=300)
+    lines = cv2.HoughLinesP(gray, 1, np.pi / 180, 90, minLineLength=100, maxLineGap=300)
     cimg = cv2.cvtColor(gray, cv2.COLOR_GRAY2BGR)
     cross = Cross()
     if lines is None:
@@ -407,7 +406,6 @@ def get_cross5(image,getImg=True):
     try:
         (x, y, angle) = cross.get_cross_point()  # 如果没找够4条线，这里会抛出异常
         cv2.circle(cimg, (x, y), 2, (255, 255, 0), 2)
-        cv2.imshow('test', cimg)
     except:
         if getImg == True:
             return cimg

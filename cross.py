@@ -10,9 +10,12 @@ serial=MySerial(115200)
 while(1):
     ret,frame=cap.read()
     if ret:
-        (x,y,angle)=get_cross5(frame,getImg=False)
-        serial.send_cross_data(x,y)
-        time.sleep(0.05)
+        cross=get_cross5(frame,getImg=False)
+        if cross is not None:
+            serial.send_cross_data(cross[0],cross[1],cross[2])
+        else:
+            serial.send_cross_data(0,0,0)
+            print("no line!\r\n")
 '''
 
 img47=cv2.imread("cross47.jpg")

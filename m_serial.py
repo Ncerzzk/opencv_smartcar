@@ -16,12 +16,15 @@ class MySerial:
         head=b'by'
         length=struct.pack('b',2)
         type=struct.pack('b',15)
-        s_x=struct.pack('h',x)
-        s_y=struct.pack('h',y)
-        s_a=struct.pack('f',angle)
-        s=head+length+type+s_x+s_y+s_a+b'\r\n'
-        #print(s)
-        self.ser.write(s)
+        try:
+            s_x=struct.pack('h',x)
+            s_y=struct.pack('h',y)
+            s_a=struct.pack('f',angle)
+            s=head+length+type+s_x+s_y+s_a+b'\r\n'
+            self.ser.write(s)
+        except:
+            print("error!\r\n")
+            print(s)
 
 
 

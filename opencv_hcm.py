@@ -379,10 +379,10 @@ def get_cross5(image,getImg=True):
     t,contours,h=cv2.findContours(gray,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)  # 找外轮廓
     #gray = cv2.Laplacian(gray, cv2.CV_8U, gray,5 )
     #ret, gray = cv2.threshold(gray, 140, 255, 0)
-    gray=cv2.Canny(gray,300,200)
+    gray=cv2.Canny(gray,300,300)
     cv2.drawContours(gray,contours,-1,(0,0,0),2)  #去掉外轮廓 实际上是为了去掉透视后的黑边
     kernel = np.ones((5, 5), np.uint8)
-    #gray = cv2.dilate(gray, kernel, iterations=1)
+    gray = cv2.dilate(gray, kernel, iterations=1)
 
     lines = cv2.HoughLinesP(gray, 1, np.pi / 180, 120, minLineLength=100, maxLineGap=300)
     cimg = cv2.cvtColor(gray, cv2.COLOR_GRAY2BGR)
@@ -414,7 +414,10 @@ def get_cross5(image,getImg=True):
         print(x, y, angle)
         return cimg
     else:
-        return (x, y, angle)
+        if x>640 or y>480 or x<0 or y<0:
+            return None
+        else:
+            return (x, y, angle)
 
 '''
 #src=np.float32([[116,113],[346,267],[277,84],[601,132]])

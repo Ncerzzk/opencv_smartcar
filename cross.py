@@ -1,10 +1,10 @@
 from opencv_hcm import *
 import cv2
 import numpy as np
-from m_serial import *
+#from m_serial import *
 import time
 
-
+'''
 cap = cv2.VideoCapture(0)
 
 serial=MySerial(115200)
@@ -14,7 +14,12 @@ while(1):
         (x,y,angle)=get_cross2(frame,getImg=False)
         serial.send_cross_data(x,y)
         time.sleep(0.05)
-
+'''
+img47=cv2.imread("cross47.jpg")
+img55=cv2.imread("cross55.jpg")
+cv2.imshow("47",get_cross2(img47,True))
+cv2.imshow("55",get_cross2(img55,True))
+cv2.waitKey()
 '''
 def get_point(event,x,y,flags,param):
     if event == cv2.EVENT_LBUTTONDBLCLK:

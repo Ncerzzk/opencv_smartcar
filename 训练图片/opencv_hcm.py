@@ -30,42 +30,21 @@ class Chess:
         self.x=x
         self.y=y
         self.r=r
-        self.goal=0
 
 
-def get_chess_goal(image,x,y,r):
-    result=0
-    for i in range(0,36):
-        theta=i*10*math.pi/180
-        temp_x=x+r*math.cos(theta)
-        temp_y=y+r*math.sin(theta)
-        temp_x=int(temp_x)
-        temp_y=int(temp_y)
-        if temp_x >=640 or temp_x<0 or temp_y>=480 or temp_y<0:
-            continue
-        if image[temp_y][temp_x]==255:
-            result+=1
-    return result
 def get_chess(image,minR=230,maxR=250,hough_pram2=10,getImg=True):
     chess_list=[]
-    image=cv2.GaussianBlur(image,(3,3),5)
+    image=cv2.GaussianBlur(image,(3,3),7)
     gray=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
     kernel = np.ones((5, 5), np.uint8)
-
-    #gray = cv2.erode(gray, kernel, iterations=10)    #腐蚀
+    gray = cv2.erode(gray, kernel, iterations=10)    #腐蚀
 
 
     gray = cv2.Laplacian(gray, cv2.CV_8U, gray, 3)
+    #ret, gray = cv2.threshold(gray, 140, 255, 0)
 
-    #gray = cv2.morphologyEx(gray, cv2.MORPH_CLOSE, kernel)
-    #ret, gray = cv2.threshold(gray, 120, 255, 0)
-    gray = cv2.dilate(gray, kernel, iterations=2)  # 膨胀
-
-    gray = cv2.erode(gray, kernel, iterations=2)  # 腐蚀
-    gray=cv2.Canny(gray,300,200)
-    gray = cv2.dilate(gray, kernel, iterations=1)  # 膨胀
-    ret, gray = cv2.threshold(gray, 127, 255, 0)
-    circles=cv2.HoughCircles(gray,cv2.HOUGH_GRADIENT,1,5,param1=1,param2=hough_pram2,minRadius=230,maxRadius=250)
+    gray = cv2.dilate(gray, kernel, iterations=5) # 膨胀
+    circles=cv2.HoughCircles(gray,cv2.HOUGH_GRADIENT,1,60,param1=400,param2=hough_pram2,minRadius=minR,maxRadius=maxR)
     if circles is None:
         return None
     circles=np.uint16(np.around(circles))
@@ -77,17 +56,21 @@ def get_chess(image,minR=230,maxR=250,hough_pram2=10,getImg=True):
         y=int(i[1])
         r=int(i[2])
         chess=Chess(x,y,r)
-        chess.goal=get_chess_goal(gray,x,y,r)
         chess_list.append(chess)
-
-    chess_list.sort(key=lambda chess:chess.goal,reverse=True)
     biggest=chess_list[0]
-    cv2.circle(cimg, (biggest.x, biggest.y), biggest.r, (0, 0, 255), 2)
+    for i in chess_list:
+        if i.r>biggest.r:
+            biggest=i
+    if biggest.r > 200:
+        cv2.circle(cimg,(biggest.x,biggest.y),biggest.r,(0,0,255),2)
+        cv2.circle(cimg, (biggest.x, biggest.y), 2, (255,0,0), 2)
     if getImg==True:
         return cimg
     else:
-        return (biggest.x,biggest.y,biggest.r)
-
+        if biggest.r>200:
+            return (biggest.x,biggest.y,biggest.r)
+        else:
+            return None
 
 class Line:
     def __init__(self,x1=0,y1=0,x2=0,y2=0,k=None,b=None):
@@ -110,12 +93,6 @@ class Line:
             self.lengh=abs(self.end[0]-self.start[0])
         else:
             self.lengh=abs(self.end[1]-self.start[1])
-
-    def get_distance(self,line):
-        fenzi = self.k * line.start[0] +self.b - line.start[1]
-        fenmu = math.sqrt(self.k * self.k + 1)
-        result = abs(fenzi / fenmu)
-        return result
 
 
 class Cross:
@@ -143,11 +120,9 @@ class Cross:
 
     def get_cross_point(self):
         if len(self.rows)==2:
-            row_width=self.rows[0].get_distance(self.rows[1])
-            #row_width=int(abs(self.rows[0].start[1]-self.rows[1].start[1]))
+            row_width=int(abs(self.rows[0].start[1]-self.rows[1].start[1]))
         if len(self.cols)==2:
-            col_width=self.cols[0].get_distance(self.cols[1])
-            #col_width=int(abs(self.cols[0].start[0]-self.cols[1].start[0]))
+            col_width=int(abs(self.cols[0].start[0]-self.cols[1].start[0]))
 
         if len(self.rows)+len(self.cols)==3:
             if len(self.rows)==1:
@@ -168,7 +143,6 @@ class Cross:
             raise Exception
         if abs(row_width-col_width)>20:
             # 判断宽度
-            print(row_width,col_width)
             raise Exception
         #if self.rows[0].k*self.cols[1].k>-0.8:
             #print(self.rows[0].k)
@@ -265,6 +239,9 @@ def get_cross(image,getImg=True):
 #SRC=np.float32([[56,42],[386,193],[343,13],[639,66]])
 SRC=np.float32([[106,153],[460,476],[272,109],[625,277]])
 H=get_H(SRC)
+
+
+
 
 def get_cross2(image,getImg=True):
 
@@ -429,8 +406,6 @@ def get_cross5(image,getImg=True):
     #image=image[0:int(height/12)*6:,int(width/4):width]
     #image=image[int(height/12)*:height,:]
     gray=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
-
-    cv2.imshow("init",gray)
     gray = cv2.erode(gray, kernel, iterations=5)    #腐蚀
     t,contours,h=cv2.findContours(gray,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)  # 找外轮廓
     #gray = cv2.Laplacian(gray, cv2.CV_8U, gray,5 )
@@ -490,12 +465,4 @@ def get_cross5(image,getImg=True):
         else:
             return (x, y, angle)
 
-
-image=cv2.imread("1534781705.jpg")
-#image=get_chess(image,getImg=True)
-image=get_cross5(image,getImg=True)
-if image is not None:
-    cv2.imshow("xxx",image)
-
-cv2.waitKey()
 

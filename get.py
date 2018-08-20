@@ -10,7 +10,7 @@ while(1):
     # show a frame
     #img=get_chess(frame,True)
    # img=get_cross(frame)
-    #img=get_cross2(frame,True)
+    img=get_cross5(frame,True)
     img=None
     if img is None:
         cv2.imshow("capture", frame)
